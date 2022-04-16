@@ -5,7 +5,9 @@
 const int WINDOW_WIDTH = 1600;
 const int WINDOW_HEIGHT = 900;
 
-const int CHAR_SIZE = 30;
+sf::Color BACKGROUND = sf::Color(225, 247, 247);
+
+const int TILE_SIZE = 30;
 
 //moving statistics
 const float BASE_SPEED = 130.0;
