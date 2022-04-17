@@ -168,7 +168,7 @@ bool Board::shortestPath(Tile*& src)
 		else
 		{
 			return true;
-			//------------------ random moves ----------------
+			//----------------- random moves ----------------
 		}
 	}
 
