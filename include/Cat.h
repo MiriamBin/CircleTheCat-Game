@@ -10,5 +10,5 @@ public:
 
 	
 private:
-	Tile* m_pos;
+	Tile* m_pos; // position
 };
