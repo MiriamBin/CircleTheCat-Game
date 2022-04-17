@@ -11,8 +11,8 @@ public:
     void drawBoard(sf::RenderWindow& window);
     void createNeighborsList();
     void clorTile(const sf::Vector2f pos);
-
-    void colorForD();
+   // bool clicked();
+   // void colorForD();
 
 private:
     std::vector< std::vector<Tile>> m_tiles;

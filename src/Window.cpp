@@ -10,6 +10,25 @@ Window::Window()
     m_window.display();
 }
 
+void Window::windowEvent(Controller& controller, Board& board)
+{
+    while (m_window.isOpen())
+    {
+        if (auto event = sf::Event{}; m_window.pollEvent(event))
+        {
+            switch (event.type)
+            {
+            case sf::Event::Closed:
+                m_window.close();
+                break;
+            case sf::Event::MouseButtonReleased:
+                //handleClick(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)); // NEED TO CREATE HANDLECLICK FUNCTION
+                break;
+            }
+        }
+    }
+}
+
 bool Window::isOpen()
 {
     return m_window.isOpen();

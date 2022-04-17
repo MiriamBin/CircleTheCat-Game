@@ -13,7 +13,7 @@ Board::Board()
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2)* (TILE_RADIUS + SPACE/2), 50 + i * (DIAMETER + SPACE)), isEdge);
+			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2)* (TILE_RADIUS + SPACE/2), 45 + i * (DIAMETER + SPACE)), isEdge);
 
 			row.push_back(tile);
 		}
@@ -21,7 +21,7 @@ Board::Board()
 	}
 
 	createNeighborsList();
-	colorForD();
+	//colorForD();
 }
 
 void Board::drawBoard(sf::RenderWindow& window)
@@ -64,22 +64,22 @@ void Board::createNeighborsList()
 		}
 	}
 }
-
-void Board::colorForD()
-{
-	std::vector <Tile*> tmp = m_target.getNeighborList();
-
-	for (size_t i = 0; i < tmp.size(); i++)
-	{
-		tmp[i]->color();
-	}
-}
+//
+//void Board::colorForD()
+//{
+//	std::vector <Tile*> tmp = m_target.getNeighborList();
+//
+//	for (size_t i = 0; i < tmp.size(); i++)
+//	{
+//		tmp[i]->color();
+//	}
+//}
 
 void Board::clorTile(const sf::Vector2f pos)
 {
-	for (size_t i = 0; i < 11; i++)
+	for (size_t i = 0; i < GRAPH_SIZE; i++)
 	{
-		for (size_t j = 0; j < 11; j++)
+		for (size_t j = 0; j < GRAPH_SIZE; j++)
 		{
 			/*if (m_tiles[i][j].getTile().getGlobalBounds().contains(pos))
 			{
@@ -88,3 +88,8 @@ void Board::clorTile(const sf::Vector2f pos)
 		}
 	}
 }
+
+//bool Board::clicked()
+//{
+//	return false;
+//}

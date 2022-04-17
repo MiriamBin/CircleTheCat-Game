@@ -39,3 +39,8 @@ bool Tile::isEdge()
 {
 	return m_isEdge;
 }
+
+bool Tile::contain(sf::Vector2f location)
+{
+	return m_tile.getGlobalBounds().contains(location);
+}

@@ -1,12 +1,15 @@
 #pragma once
 //#include <SFML/Graphics.hpp>
 #include "Macros.h"
-//class Controller;
+#include "Board.h"
+
+class Controller;
 
 class Window
 {
 public:
     Window();
+    void windowEvent(Controller& controller, Board& board);
     bool isOpen();
     sf::RenderWindow* getWindow();
  

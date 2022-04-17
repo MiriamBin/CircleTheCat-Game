@@ -13,6 +13,7 @@ public:
     std::vector<Tile*> getNeighborList();
     void color();
     bool isEdge();
+    bool contain(sf::Vector2f location);
 
 private:
     sf::CircleShape m_tile;
