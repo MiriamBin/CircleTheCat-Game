@@ -93,3 +93,15 @@ void Board::clorTile(const sf::Vector2f pos)
 //{
 //	return false;
 //}
+
+void Board::handleClick(const sf::Vector2f pos)
+{
+	for (int i = 0; i < GRAPH_SIZE; i++)
+	{
+		for (int j = 0; j < GRAPH_SIZE; j++)
+		{
+			if (m_tiles[i][j].contain(pos) && !m_tiles[i][j].isClicked())
+				m_tiles[i][j].tileClicked();
+		}
+	}
+}

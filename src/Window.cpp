@@ -10,6 +10,8 @@ Window::Window()
     m_window.display();
 }
 
+
+//------------------------------------------------ MAYBE NEED TO MOVE TO CONTROLLER
 void Window::windowEvent(Controller& controller, Board& board)
 {
     while (m_window.isOpen())
@@ -22,7 +24,7 @@ void Window::windowEvent(Controller& controller, Board& board)
                 m_window.close();
                 break;
             case sf::Event::MouseButtonReleased:
-                //handleClick(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)); // NEED TO CREATE HANDLECLICK FUNCTION
+                board.handleClick(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)); // NEED TO CREATE HANDLECLICK FUNCTION
                 break;
             }
         }

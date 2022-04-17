@@ -14,12 +14,3 @@ void Controller::run()
 
 }
 
-void Controller::handleClick(const sf::Vector2f pos)
-{
-   /* if (m_tile.contain(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)))
-
-    if (m_board.clicked())
-    {
-        m_board.
-    }*/
-}

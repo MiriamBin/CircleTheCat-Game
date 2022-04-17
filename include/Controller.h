@@ -7,7 +7,6 @@ class Controller
 public:
     Controller();
     void run();
-    void handleClick(const sf::Vector2f location);
 
 private:
     Window m_window;

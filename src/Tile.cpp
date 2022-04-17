@@ -2,7 +2,6 @@
 //#include "Window.h"
 
 
-
 Tile::Tile()
 {
 }
@@ -32,7 +31,7 @@ std::vector<Tile*> Tile::getNeighborList()
 
 void Tile::color()
 {
-	m_tile.setFillColor(sf::Color::Magenta);
+	m_tile.setFillColor(sf::Color(50, 116, 150));
 }
 
 bool Tile::isEdge()
@@ -40,7 +39,24 @@ bool Tile::isEdge()
 	return m_isEdge;
 }
 
+sf::CircleShape Tile::getTile()
+{
+	return m_tile;
+}
+
 bool Tile::contain(sf::Vector2f location)
 {
 	return m_tile.getGlobalBounds().contains(location);
+}
+
+bool Tile::isClicked()
+{
+	return m_clicked;
+}
+
+void Tile::tileClicked()
+{
+	m_clicked = true;
+
+	color();
 }
