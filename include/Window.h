@@ -9,7 +9,7 @@ class Window
 {
 public:
     Window();
-    void windowEvent(Controller& controller, Board& board);
+    //void windowEvent(Controller& controller, Board& board);
     bool isOpen();
     sf::RenderWindow* getWindow();
  
