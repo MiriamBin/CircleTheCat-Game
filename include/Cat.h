@@ -1,4 +1,7 @@
 #pragma once
+#include "Tile.h"
+#include "Macros.h"
+
 
 class Cat
 {
@@ -7,5 +10,5 @@ public:
 
 	
 private:
-
+	Tile* m_pos;
 };

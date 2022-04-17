@@ -28,6 +28,7 @@ void Window::windowEvent(Controller& controller, Board& board)
                 break;
             }
         }
+        board.drawBoard(m_window);
     }
 }
 

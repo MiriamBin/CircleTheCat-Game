@@ -6,6 +6,13 @@ Tile::Tile()
 {
 }
 
+//------------------------------- FOR DEBUG ---------------
+void Tile::color()
+{
+	m_tile.setFillColor(sf::Color(50, 116, 150));
+}
+//----------------------------------------------------
+
 Tile::Tile(sf::Vector2f pos, bool isEdge)
 {
 	m_tile.setRadius(30);
@@ -29,10 +36,6 @@ std::vector<Tile*> Tile::getNeighborList()
 	return m_neighbors;
 }
 
-void Tile::color()
-{
-	m_tile.setFillColor(sf::Color(50, 116, 150));
-}
 
 bool Tile::isEdge()
 {
@@ -54,9 +57,38 @@ bool Tile::isClicked()
 	return m_clicked;
 }
 
+bool Tile::alreadyVisited()
+{
+	return m_visited;
+}
+
+void Tile::setVisited(bool set)
+{
+	m_visited = set;
+}
+
+int Tile::getDistance()
+{
+	return m_distance;
+}
+
+void Tile::setDistance(int dist)
+{
+	m_distance = dist;
+}
+
+void Tile::setPred(Tile* pred)
+{
+	m_pred = pred;
+}
+
+Tile* Tile::getPred()
+{
+	return m_pred;
+}
+
 void Tile::tileClicked()
 {
 	m_clicked = true;
-
-	color();
+	m_tile.setFillColor(sf::Color(50, 116, 150));
 }
