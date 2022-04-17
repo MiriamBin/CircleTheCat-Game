@@ -10,6 +10,7 @@ public:
     Board();
     void drawBoard(sf::RenderWindow& window);
     void createNeighborsList();
+    void clorTile(const sf::Vector2f pos);
 
     void colorForD();
 

@@ -2,15 +2,14 @@
 #include <SFML/Graphics.hpp>
 
 //grapics
-const int WINDOW_WIDTH = 1600;
-const int WINDOW_HEIGHT = 900;
+const int WINDOW_WIDTH = 1000;
+const int WINDOW_HEIGHT = 800;
 
 //Tiles
 const int GRAPH_SIZE = 11;
-
-//sf::Color BACKGROUND = sf::Color(222, 249, 255);
-
-const int TILE_SIZE = 30;
+const int TILE_RADIUS = 30;
+const int DIAMETER = 60;
+const int SPACE = 5;
 
 //moving statistics
 const float BASE_SPEED = 130.0;

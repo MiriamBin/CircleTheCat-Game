@@ -12,7 +12,6 @@ public:
     void addNeighbor(Tile* Neighbor);
     std::vector<Tile*> getNeighborList();
     void color();
-
     bool isEdge();
 
 private:

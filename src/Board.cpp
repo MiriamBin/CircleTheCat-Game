@@ -4,16 +4,16 @@
 
 Board::Board()
 {	
-	for (int i = 0; i < 11; i++)  //**** change the NUMBERRR !!!
+	for (int i = 0; i < GRAPH_SIZE; i++)
 	{
 		std::vector<Tile> row;
-		for (int j = 0; j < 11; j++)
+		for (int j = 0; j < GRAPH_SIZE; j++)
 		{
 			bool isEdge = false;
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(100 + j * 65 + (i % 2)* 32.5, 100 + i * 65), isEdge);
+			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2)* (TILE_RADIUS + SPACE/2), 50 + i * (DIAMETER + SPACE)), isEdge);
 
 			row.push_back(tile);
 		}
@@ -28,7 +28,7 @@ void Board::drawBoard(sf::RenderWindow& window)
 {
 	window.clear(sf::Color(222, 249, 255));
 
-	for (int i = 0; i < GRAPH_SIZE; i++)  //**** change the NUMBERRR !!!
+	for (int i = 0; i < GRAPH_SIZE; i++)
 	{
 		for (int j = 0; j < GRAPH_SIZE; j++)
 		{
@@ -81,10 +81,10 @@ void Board::clorTile(const sf::Vector2f pos)
 	{
 		for (size_t j = 0; j < 11; j++)
 		{
-			if (m_tiles[i][j].getTile().getGlobalBounds().contains(pos))
+			/*if (m_tiles[i][j].getTile().getGlobalBounds().contains(pos))
 			{
 				m_tiles[i][j].color();
-			}
+			}*/
 		}
 	}
 }
