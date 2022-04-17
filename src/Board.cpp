@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <iostream>		//DEBUG
 //#include "Window.h"
 
 
@@ -101,7 +102,96 @@ void Board::handleClick(const sf::Vector2f pos)
 		for (int j = 0; j < GRAPH_SIZE; j++)
 		{
 			if (m_tiles[i][j].contain(pos) && !m_tiles[i][j].isClicked())
+			{
 				m_tiles[i][j].tileClicked();
+				return;
+			}
 		}
 	}
+}
+
+bool Board::bfs(Tile* src)
+{
+	std::queue<Tile*> queue;
+
+	for (int i = 0; i < GRAPH_SIZE; i++)
+	{
+		for (int j = 0; j < GRAPH_SIZE; j++)
+		{
+			m_tiles[i][j].setVisited(false);
+			m_tiles[i][j].setDistance(INT_MAX);
+			m_tiles[i][j].setPred(NULL);
+		}
+	}
+	m_target.setVisited(false);
+	m_target.setDistance(INT_MAX);
+	m_target.setPred(NULL);
+
+	src->setVisited(true);
+	src->setDistance(0);
+	queue.push(src);
+
+	while (!queue.empty()) 
+	{
+		Tile* u = queue.front();
+		std::vector<Tile*>neighbors = u->getNeighborList();
+		queue.pop();
+
+		for (int i = 0; i < neighbors.size(); i++)
+		{
+			if (!neighbors[i]->alreadyVisited() && !neighbors[i]->isClicked())
+			{
+				neighbors[i]->setVisited(true);
+				neighbors[i]->setDistance(u->getDistance() + 1);
+				neighbors[i]->setPred(u);
+				queue.push(neighbors[i]);
+
+				// We stop BFS when we find
+				// destination.
+				if (neighbors[i] == &m_target)
+					return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool Board::shortestPath(Tile*& src)
+{
+	if (!bfs(src))
+	{
+		if (catCircled(src))
+		{
+			std::cout << "you won";
+			return false;
+		}
+		else
+		{
+			return true;
+			//---------------- random moves ----------------
+		}
+	}
+
+	std::vector<Tile*> path;
+	Tile* crawl = &m_target;
+	path.push_back(crawl);
+
+	while (crawl->getPred()->getPred())
+	{
+		path.push_back(crawl->getPred());
+		crawl = crawl->getPred();
+	}
+
+	src = crawl;
+	return true;
+}
+
+bool Board::catCircled(Tile* src)
+{
+	for (int i = 0; i < src->getNeighborList().size(); i++)
+	{
+		if (!src->getNeighborList()[i]->isClicked())
+			return false;
+	}
+	return true;
 }
