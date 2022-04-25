@@ -24,6 +24,7 @@ public:
     void setDistance(int dist);
     void setPred(Tile* pred);
     Tile* getPred();
+    sf::Vector2f getPosition();
 
 private:
     sf::CircleShape m_tile;

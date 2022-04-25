@@ -1,6 +1,7 @@
 #pragma once
 #include "Window.h"
 #include "Board.h"
+#include "ResourcesManager.h"
 
 class Controller
 {
@@ -12,4 +13,8 @@ public:
 private:
     Window m_window;
     Board m_board;
+   // int m_clickCounter;
+
+   // sf::Font m_font;
+
 };

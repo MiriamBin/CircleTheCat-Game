@@ -87,6 +87,11 @@ Tile* Tile::getPred()
 	return m_pred;
 }
 
+sf::Vector2f Tile::getPosition()
+{
+	return m_tile.getPosition();
+}
+
 void Tile::tileClicked()
 {
 	m_clicked = true;

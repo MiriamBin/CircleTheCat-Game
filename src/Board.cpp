@@ -4,7 +4,20 @@
 
 
 Board::Board()
+	:m_clickCounter(0), m_level(1)
 {	
+	this->m_levelText.setFont(*ResourcesManager::instance().getFont());
+	this->m_levelText.setCharacterSize(CHAR_SIZE);
+	this->m_levelText.setPosition(900, 140);
+	this->m_levelText.setColor(sf::Color::Black);
+	this->m_levelText.setString("Level: " + std::to_string(m_level));
+
+	this->m_clickText.setFont(*ResourcesManager::instance().getFont());
+	this->m_clickText.setCharacterSize(CHAR_SIZE);
+	this->m_clickText.setPosition(900, 240);
+	this->m_clickText.setColor(sf::Color::Black);
+	this->m_clickText.setString("Click: " + std::to_string(m_clickCounter));
+
 	for (int i = 0; i < GRAPH_SIZE; i++)
 	{
 		std::vector<Tile> row;
@@ -36,7 +49,10 @@ void Board::drawBoard(sf::RenderWindow& window)
 			m_tiles[i][j].draw(window);
 		}
 	}
-	
+	window.draw(m_levelText);
+	window.draw(m_clickText);
+	this->m_clickText.setString("Steps: " + std::to_string(m_clickCounter));
+
 	window.display();
 }
 
@@ -104,6 +120,7 @@ void Board::handleClick(const sf::Vector2f pos)
 			if (m_tiles[i][j].contain(pos) && !m_tiles[i][j].isClicked())
 			{
 				m_tiles[i][j].tileClicked();
+				++m_clickCounter;
 				return;
 			}
 		}

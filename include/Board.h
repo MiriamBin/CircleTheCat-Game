@@ -1,7 +1,7 @@
 #pragma once
 #include "Tile.h"
 #include <queue>
-
+#include "ResourcesManager.h"
 //#include "Macros.h"
 
 class Controller;
@@ -24,4 +24,9 @@ public:
 private:
     std::vector< std::vector<Tile>> m_tiles;
     Tile m_target;
+
+    sf::Text m_levelText;
+    sf::Text m_clickText;
+    int m_clickCounter;
+    int m_level;
 };
