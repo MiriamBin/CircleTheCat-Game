@@ -13,7 +13,7 @@ public:
     void drawBoard(sf::RenderWindow& window);
     void createNeighborsList();
     void clorTile(const sf::Vector2f pos);
-    void handleClick(const sf::Vector2f location);
+    bool handleClick(const sf::Vector2f location);
     bool bfs(Tile* src);
     bool shortestPath(Tile*& src);
     bool catCircled(Tile* src);

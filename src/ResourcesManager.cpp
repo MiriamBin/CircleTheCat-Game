@@ -3,11 +3,11 @@
 #include <iostream>
 
 ResourcesManager::ResourcesManager()
-{
-	if (!m_font.loadFromFile("resources/COMIC.ttf"))
-		exit(EXIT_FAILURE);
-	
-	if (!m_catTexture.loadFromFile("resources/cat.png"))
+{	
+	if (!m_font.loadFromFile("resources/COMIC.ttf")||
+		!m_catTexture.loadFromFile("resources/cat.png")||
+		!m_winTexture.loadFromFile("resources/win.png")||
+		!m_loseTexture.loadFromFile("resources/lose.png"))
 		exit(EXIT_FAILURE);
 }
 
@@ -26,3 +26,14 @@ const sf::Texture* ResourcesManager::getCatIcon() const
 {
 	return &m_catTexture;
 }
+
+const sf::Texture* ResourcesManager::getwinImg() const
+{
+	return &m_winTexture;
+}
+
+const sf::Texture* ResourcesManager::getlosenImg() const
+{
+	return &m_loseTexture;
+}
+

@@ -1,6 +1,7 @@
 #include "Controller.h"
 
 Controller::Controller()
+    :m_cat(&m_board)
 {
    
 }
@@ -23,11 +24,19 @@ void Controller::run()
                 break;
             }
         }
+        //---- need to move to new function ----
+        m_window.getWindow()->clear(sf::Color(222, 249, 255));  
         m_board.drawBoard(*m_window.getWindow());
+        m_cat.DrawCat(*m_window.getWindow());
+        m_window.getWindow()->display();
+        //------
     }
 }
 
 void Controller::handleClick(const sf::Vector2f pos)
 {
-    m_board.handleClick(pos);
+    if (m_board.handleClick(pos))
+    {
+        m_cat.goToNext(); // make the cat move
+    }
 }

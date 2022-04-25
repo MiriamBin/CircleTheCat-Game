@@ -40,7 +40,7 @@ Board::Board()
 
 void Board::drawBoard(sf::RenderWindow& window)
 {
-	window.clear(sf::Color(222, 249, 255));
+	//window.clear(sf::Color(222, 249, 255));
 
 	for (int i = 0; i < GRAPH_SIZE; i++)
 	{
@@ -52,8 +52,7 @@ void Board::drawBoard(sf::RenderWindow& window)
 	window.draw(m_levelText);
 	window.draw(m_clickText);
 	this->m_clickText.setString("Steps: " + std::to_string(m_clickCounter));
-
-	window.display();
+	//window.display();
 }
 
 void Board::createNeighborsList()
@@ -111,7 +110,7 @@ void Board::clorTile(const sf::Vector2f pos)
 //	return false;
 //}
 
-void Board::handleClick(const sf::Vector2f pos)
+bool Board::handleClick(const sf::Vector2f pos)
 {
 	for (int i = 0; i < GRAPH_SIZE; i++)
 	{
@@ -121,10 +120,11 @@ void Board::handleClick(const sf::Vector2f pos)
 			{
 				m_tiles[i][j].tileClicked();
 				++m_clickCounter;
-				return;
+				return true;
 			}
 		}
 	}
+	return false;
 }
 
 bool Board::bfs(Tile* src)

@@ -1,3 +1,5 @@
 ﻿#file (MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/resources)
 configure_file ("COMIC.ttf" ${CMAKE_BINARY_DIR}/resources COPYONLY)
 configure_file ("cat.png" ${CMAKE_BINARY_DIR}/resources COPYONLY)
+configure_file ("win.png" ${CMAKE_BINARY_DIR}/resources COPYONLY)
+configure_file ("lose.png" ${CMAKE_BINARY_DIR}/resources COPYONLY)

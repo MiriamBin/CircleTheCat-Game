@@ -9,6 +9,10 @@ class Cat
 public:
 	Cat(Board* board);
 
+	void goToNext();
+
+	void DrawCat(sf::RenderWindow& window);
+
 	
 private:
 	Board* m_board;
