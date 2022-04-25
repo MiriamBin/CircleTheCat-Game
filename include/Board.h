@@ -19,7 +19,7 @@ public:
     bool catCircled(Tile* src);
    // bool clicked();
    // void colorForD();
-    
+    Tile* getTile(int index1, int index2);
 
 private:
     std::vector< std::vector<Tile>> m_tiles;

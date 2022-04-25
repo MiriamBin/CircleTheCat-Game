@@ -212,3 +212,8 @@ bool Board::catCircled(Tile* src)
 	}
 	return true;
 }
+
+Tile* Board::getTile(int index1, int index2)
+{
+	return &m_tiles[index1][index2];
+}
