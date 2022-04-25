@@ -175,17 +175,20 @@ bool Board::bfs(Tile* src)
 
 bool Board::shortestPath(Tile*& src)
 {
+	srand(time(NULL));
+
 	if (!bfs(src))
 	{
 		if (catCircled(src))
 		{
-			std::cout << "you won";
 			return false;
 		}
 		else
 		{
+			std::vector <Tile*> list = src->getNeighborList();
+			src = list[rand() % list.size()];
 			return true;
-			//----------------- random moves ----------------
+			
 		}
 	}
 

@@ -12,7 +12,7 @@ Cat::Cat(Board* board)
 
 void Cat::goToNext()
 {
-	if (m_board->shortestPath(m_pos)) // if we have path - the cat inst mukaf
+	if (m_board->shortestPath(m_pos)) // if we have path - the cat isn't mukaf
 	{
 		// ***need to change to something prettier ****
 		if (!m_pos->isEdge()) // if the cat isnt on the edge, continue 
@@ -26,6 +26,8 @@ void Cat::goToNext()
 
 		m_cat.setPosition(m_pos->getPosition()); // move the cat
 	}
+	else
+		std::cout << "you won"; 
 }
 
 void Cat::DrawCat(sf::RenderWindow& window)

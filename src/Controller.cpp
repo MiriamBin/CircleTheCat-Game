@@ -1,9 +1,14 @@
 #include "Controller.h"
+#include <iostream>
+
 
 Controller::Controller()
     :m_cat(&m_board)
 {
-   
+    m_undo = Button(sf::Vector2f(1000, 400), sf::Vector2f(1000, 400), sf::Vector2f(50, 50), "UNDO", CHAR_SIZE);
+    m_reset = Button(sf::Vector2f(1000, 600), sf::Vector2f(1000, 600), sf::Vector2f(50, 50), "RESET", CHAR_SIZE);
+
+ // Button::Button(sf::Vector2f buttonPos, sf::Vector2f textPos, sf::Vector2f buttonSize, std::string buttonName, int textSize)
 }
 
 void Controller::run()
@@ -28,6 +33,8 @@ void Controller::run()
         m_window.getWindow()->clear(sf::Color(222, 249, 255));  
         m_board.drawBoard(*m_window.getWindow());
         m_cat.DrawCat(*m_window.getWindow());
+        m_reset.printButton(*m_window.getWindow());
+        m_undo.printButton(*m_window.getWindow());
         m_window.getWindow()->display();
         //------
     }
@@ -38,5 +45,20 @@ void Controller::handleClick(const sf::Vector2f pos)
     if (m_board.handleClick(pos))
     {
         m_cat.goToNext(); // make the cat move
+    }
+
+    handleButtonClick(pos);
+}
+
+void Controller::handleButtonClick(const sf::Vector2f pos)
+{
+    if (m_reset.contain(pos))
+    {
+        std::cout << " RESET \n";
+    }
+
+    else if (m_undo.contain(pos))
+    {
+        std::cout << " UNDO \n";
     }
 }

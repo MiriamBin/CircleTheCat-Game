@@ -5,4 +5,5 @@
                                               "Tile.cpp"
                                               "Window.cpp"
                                               "ResourcesManager.cpp"
+                                              "Button.cpp"
                                               )
