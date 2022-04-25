@@ -18,6 +18,7 @@ Tile::Tile(sf::Vector2f pos, bool isEdge)
 	m_tile.setRadius(30);
 	m_tile.setPosition(pos);
 	m_tile.setFillColor(sf::Color(120, 210, 227));
+
 	m_isEdge = isEdge;
 }
 

@@ -7,7 +7,7 @@ Cat::Cat(Board* board)
 	m_cat.setTexture(ResourcesManager::instance().getCatIcon());
 	m_cat.setSize(sf::Vector2f(CAT_SIZE, CAT_SIZE));
 	m_cat.setPosition(m_pos->getPosition());
-	//m_cat.setOrigin(sf::Vector2f(CAT_SIZE/2, CAT_SIZE/2));
+	//m_cat.setOrigin(sf::Vector2f(CAT_SIZE, CAT_SIZE));
 }
 
 void Cat::goToNext()

@@ -5,7 +5,7 @@
 const int WINDOW_WIDTH = 1200;
 const int WINDOW_HEIGHT = 800;
 const int CHAR_SIZE = 50;
-const int CAT_SIZE = 50;
+const int CAT_SIZE = 65;
 
 //Tiles
 const int GRAPH_SIZE = 11;
