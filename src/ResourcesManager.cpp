@@ -4,7 +4,7 @@
 
 ResourcesManager::ResourcesManager()
 {	
-	if (!m_font.loadFromFile("resources/COMIC.ttf")||
+	if (!m_font.loadFromFile("resources/FONT.ttf")||
 		!m_catTexture.loadFromFile("resources/cat.png")||
 		!m_winTexture.loadFromFile("resources/win.png")||
 		!m_loseTexture.loadFromFile("resources/lose.png"))

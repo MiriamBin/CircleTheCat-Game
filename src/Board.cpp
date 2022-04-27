@@ -9,13 +9,13 @@ Board::Board()
 	this->m_levelText.setFont(*ResourcesManager::instance().getFont());
 	this->m_levelText.setCharacterSize(CHAR_SIZE);
 	this->m_levelText.setPosition(900, 140);
-	this->m_levelText.setColor(sf::Color::Black);
+	this->m_levelText.setColor(sf::Color(6, 79, 97));
 	this->m_levelText.setString("Level: " + std::to_string(m_level));
 
 	this->m_clickText.setFont(*ResourcesManager::instance().getFont());
 	this->m_clickText.setCharacterSize(CHAR_SIZE);
 	this->m_clickText.setPosition(900, 240);
-	this->m_clickText.setColor(sf::Color::Black);
+	this->m_clickText.setColor(sf::Color(6, 79, 97));
 	this->m_clickText.setString("Click: " + std::to_string(m_clickCounter));
 
 	for (int i = 0; i < GRAPH_SIZE; i++)
