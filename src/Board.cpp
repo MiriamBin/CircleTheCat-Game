@@ -23,7 +23,7 @@ Board::Board()
 			isOccupied = (rand() % 121) < (14 - 5 * (2 - 1));
 			if (isOccupied)
 				counter++;
-			if (counter > 14 - 5 * (2 - 1))
+			if (counter > 14 - 5 * (2 - 1) || (j == 5 && i == 5))
 				isOccupied = false;
 
 			if (i == 0 || i == 10 || j == 0 || j == 10)
@@ -178,7 +178,7 @@ bool Board::bfs(Tile* src)
 
 bool Board::shortestPath(Tile*& src)
 {
-	srand(time(NULL));
+	srand(time(0));
 
 	if (!bfs(src))
 	{
@@ -188,8 +188,13 @@ bool Board::shortestPath(Tile*& src)
 		}
 		else
 		{
-			std::vector <Tile*> list = src->getNeighborList();
-			src = list[rand() % list.size()];
+			Tile* tile = src->getNeighborList()[rand() % src->getNeighborList().size()];
+			while (tile->isClicked())
+			{
+				tile = src->getNeighborList()[rand() % src->getNeighborList().size()];
+			}
+			src = tile;
+			//src = list[rand() % list.size()];
 			return true;
 			
 		}
