@@ -9,9 +9,9 @@ public:
 	const sf::Font* getFont() const;
 	const sf::Texture* getCatIcon() const;
 
-	const sf::Texture* getwinImg() const;
+	const sf::Texture* getWinImg() const;
 
-	const sf::Texture* getlosenImg() const;
+	const sf::Texture* getLoseImg() const;
 	
 private:
 	ResourcesManager();

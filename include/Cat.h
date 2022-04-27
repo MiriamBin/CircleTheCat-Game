@@ -10,12 +10,19 @@ public:
 	Cat(Board* board);
 
 	void goToNext();
-	void DrawCat(sf::RenderWindow& window);
+	void drawCat(sf::RenderWindow& window);
 	void getLastStep();
-	
+	void initCat();
+
+	bool isCatCircled();
+	bool isCatOnEdge();
+
 private:
 	Board* m_board;
 	sf::RectangleShape m_cat;
 	Tile* m_pos; // position
 	std::vector<Tile*> m_steps;
+
+	bool m_catOnEdge;
+	bool m_catCircled;
 };

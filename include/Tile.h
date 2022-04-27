@@ -18,7 +18,8 @@ public:
     void tileClicked();
     void tileUnclicked();
     bool isClicked();
-    
+    void tileOccupied(bool set);
+
     bool alreadyVisited();
     void setVisited(bool set);
     int getDistance();

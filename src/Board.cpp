@@ -1,5 +1,5 @@
 #include "Board.h"
-//#include <iostream>		//DEBUG
+#include <iostream>		//DEBUG
 //#include "Window.h"
 
 
@@ -9,6 +9,14 @@ Board::Board()
 	setText();
 
 	srand(time(0));
+	
+	createBoard();
+}
+
+void Board::createBoard()
+{
+	m_clickCounter = 0;
+	m_tiles.clear();
 	int counter = 0;
 
 	for (int i = 0; i < GRAPH_SIZE; i++)
@@ -18,24 +26,25 @@ Board::Board()
 		{
 			bool isEdge = false, isOccupied = false;
 
+			//----------------------------------------------------------------------------------
 			//int range = (14 - 5 * (m_level - 1)) - (12 - 5 * (m_level - 1)) + 1;
 			//isOccupied = rand() % range + (12 - 5 * (m_level - 1));
-			isOccupied = (rand() % 121) < (14 - 5 * (2 - 1));
+			isOccupied = (rand() % 121) < (14 - 5 * (m_level - 1));
 			if (isOccupied)
 				counter++;
-			if (counter > 14 - 5 * (2 - 1) || (j == 5 && i == 5))
+			if (counter > 14 - 5 * (m_level - 1) || (j == 5 && i == 5))
 				isOccupied = false;
+			//----------------------------------------------------------------------------------
 
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2)* (TILE_RADIUS + SPACE/2), 45 + i * (DIAMETER + SPACE)), isEdge, isOccupied);
+			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 45 + i * (DIAMETER + SPACE)), isEdge, isOccupied);
 
 			row.push_back(tile);
 		}
 		m_tiles.push_back(row);
 	}
-
 	createNeighborsList();
 }
 
@@ -110,7 +119,6 @@ void Board::clorTile(const sf::Vector2f pos)
 		}
 	}
 }
-
 
 bool Board::handleClick(const sf::Vector2f pos)
 {
@@ -234,9 +242,4 @@ void Board::getLastTile()
 Tile* Board::getTile(int index1, int index2)
 {
 	return &m_tiles[index1][index2];
-}
-
-void Board::resetBoard()
-{
-
 }

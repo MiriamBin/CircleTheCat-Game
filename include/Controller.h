@@ -22,5 +22,9 @@ private:
     Button m_undo;
     int m_level = 1;
     //bool m_resetBoard = false;
+    bool m_win;
+    bool m_lose;
 
+    sf::RectangleShape m_winBackground;
+    sf::RectangleShape m_loseBackground;
 };

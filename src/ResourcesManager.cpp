@@ -27,13 +27,12 @@ const sf::Texture* ResourcesManager::getCatIcon() const
 	return &m_catTexture;
 }
 
-const sf::Texture* ResourcesManager::getwinImg() const
+const sf::Texture* ResourcesManager::getWinImg() const
 {
 	return &m_winTexture;
 }
 
-const sf::Texture* ResourcesManager::getlosenImg() const
+const sf::Texture* ResourcesManager::getLoseImg() const
 {
 	return &m_loseTexture;
 }
-

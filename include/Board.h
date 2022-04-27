@@ -20,8 +20,8 @@ public:
    // bool clicked();
    // void colorForD();
     Tile* getTile(int index1, int index2);
-    void resetBoard();
     void getLastTile();
+    void createBoard();
 
 private:
     std::vector< std::vector<Tile>> m_tiles;
@@ -33,4 +33,5 @@ private:
     int m_level;
 
     void setText();
+
 };

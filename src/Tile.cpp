@@ -97,6 +97,11 @@ sf::Vector2f Tile::getPosition()
 	return m_tile.getPosition();
 }
 
+void Tile::tileOccupied(bool set)
+{
+	m_clicked = set;
+}
+
 void Tile::tileClicked()
 {
 	m_clicked = true;
