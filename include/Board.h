@@ -31,4 +31,6 @@ private:
     sf::Text m_clickText;
     int m_clickCounter;
     int m_level;
+
+    void setText();
 };

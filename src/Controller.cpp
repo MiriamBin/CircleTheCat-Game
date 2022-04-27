@@ -3,7 +3,7 @@
 
 
 Controller::Controller()
-    :m_cat(&m_board)
+    :m_cat(&m_board), m_level(1)
 {
     m_undo = Button(sf::Vector2f(1040, 400), sf::Vector2f(1040, 400), sf::Vector2f(150, 80), "UNDO", CHAR_SIZE);
     m_reset = Button(sf::Vector2f(1040, 550), sf::Vector2f(1040, 550), sf::Vector2f(150, 80), "RESET", CHAR_SIZE);

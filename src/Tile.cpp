@@ -4,6 +4,7 @@
 
 Tile::Tile()
 {
+
 }
 
 //------------------------------- FOR DEBUG ---------------
@@ -13,13 +14,16 @@ void Tile::color()
 }
 //----------------------------------------------------
 
-Tile::Tile(sf::Vector2f pos, bool isEdge)
+Tile::Tile(sf::Vector2f pos, bool isEdge, bool isOccupied)
 {
 	m_tile.setRadius(30);
 	m_tile.setPosition(pos);
 	m_tile.setFillColor(sf::Color(120, 210, 227));
-
+	
 	m_isEdge = isEdge;
+	
+	if (isOccupied)
+		tileClicked();
 }
 
 void Tile::draw(sf::RenderWindow& window) const

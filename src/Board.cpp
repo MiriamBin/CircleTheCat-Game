@@ -1,33 +1,35 @@
 #include "Board.h"
-#include <iostream>		//DEBUG
+//#include <iostream>		//DEBUG
 //#include "Window.h"
 
 
 Board::Board()
 	:m_clickCounter(0), m_level(1)
 {	
-	this->m_levelText.setFont(*ResourcesManager::instance().getFont());
-	this->m_levelText.setCharacterSize(CHAR_SIZE);
-	this->m_levelText.setPosition(950, 140);
-	this->m_levelText.setColor(sf::Color(6, 79, 97));
-	this->m_levelText.setString("Level: " + std::to_string(m_level));
+	setText();
 
-	this->m_clickText.setFont(*ResourcesManager::instance().getFont());
-	this->m_clickText.setCharacterSize(CHAR_SIZE);
-	this->m_clickText.setPosition(950, 240);
-	this->m_clickText.setColor(sf::Color(6, 79, 97));
-	this->m_clickText.setString("Click: " + std::to_string(m_clickCounter));
+	srand(time(0));
+	int counter = 0;
 
 	for (int i = 0; i < GRAPH_SIZE; i++)
 	{
 		std::vector<Tile> row;
 		for (int j = 0; j < GRAPH_SIZE; j++)
 		{
-			bool isEdge = false;
+			bool isEdge = false, isOccupied = false;
+
+			//int range = (14 - 5 * (m_level - 1)) - (12 - 5 * (m_level - 1)) + 1;
+			//isOccupied = rand() % range + (12 - 5 * (m_level - 1));
+			isOccupied = (rand() % 121) < (14 - 5 * (2 - 1));
+			if (isOccupied)
+				counter++;
+			if (counter > 14 - 5 * (2 - 1))
+				isOccupied = false;
+
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2)* (TILE_RADIUS + SPACE/2), 45 + i * (DIAMETER + SPACE)), isEdge);
+			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2)* (TILE_RADIUS + SPACE/2), 45 + i * (DIAMETER + SPACE)), isEdge, isOccupied);
 
 			row.push_back(tile);
 		}
@@ -35,7 +37,21 @@ Board::Board()
 	}
 
 	createNeighborsList();
-	//colorForD();
+}
+
+void Board::setText()
+{
+	m_levelText.setFont(*ResourcesManager::instance().getFont());
+	m_levelText.setCharacterSize(CHAR_SIZE);
+	m_levelText.setPosition(950, 140);
+	m_levelText.setColor(sf::Color(6, 79, 97));
+	m_levelText.setString("Level: " + std::to_string(m_level));
+
+	m_clickText.setFont(*ResourcesManager::instance().getFont());
+	m_clickText.setCharacterSize(CHAR_SIZE);
+	m_clickText.setPosition(950, 240);
+	m_clickText.setColor(sf::Color(6, 79, 97));
+	m_clickText.setString("Click: " + std::to_string(m_clickCounter));
 }
 
 void Board::drawBoard(sf::RenderWindow& window)
@@ -80,16 +96,6 @@ void Board::createNeighborsList()
 		}
 	}
 }
-//
-//void Board::colorForD()
-//{
-//	std::vector <Tile*> tmp = m_target.getNeighborList();
-//
-//	for (size_t i = 0; i < tmp.size(); i++)
-//	{
-//		tmp[i]->color();
-//	}
-//}
 
 void Board::clorTile(const sf::Vector2f pos)
 {
@@ -105,10 +111,6 @@ void Board::clorTile(const sf::Vector2f pos)
 	}
 }
 
-//bool Board::clicked()
-//{
-//	return false;
-//}
 
 bool Board::handleClick(const sf::Vector2f pos)
 {
