@@ -36,11 +36,14 @@ void Cat::drawCat(sf::RenderWindow& window)
 
 void Cat::getLastStep()
 {
-	m_pos->tileOccupied(false);
-	Tile* lastStep = m_steps[m_steps.size() - 1];
-	m_pos = lastStep;
-	m_cat.setPosition(m_pos->getPosition()); // move the cat
-	m_steps.pop_back();
+	if (!m_steps.empty())
+	{
+		m_pos->tileOccupied(false);
+		Tile* lastStep = m_steps[m_steps.size() - 1];
+		m_pos = lastStep;
+		m_cat.setPosition(m_pos->getPosition()); // move the cat
+		m_steps.pop_back();
+	}
 }
 
 void Cat::initCat()
@@ -49,7 +52,8 @@ void Cat::initCat()
 	m_pos = m_board->getTile(5, 5);
 	m_steps.push_back(m_board->getTile(5, 5));
 	m_cat.setPosition(m_pos->getPosition());
-
+	m_catOnEdge = false;
+	m_catCircled = false;
 }
 
 bool Cat::isCatCircled()

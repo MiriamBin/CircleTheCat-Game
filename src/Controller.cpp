@@ -37,6 +37,7 @@ void Controller::run()
 
         //---- need to move to new function ----
         m_window.getWindow()->clear(sf::Color(222, 249, 255));  
+
         m_board.drawBoard(*m_window.getWindow());
         m_cat.drawCat(*m_window.getWindow());
         m_reset.printButton(*m_window.getWindow());
@@ -47,6 +48,7 @@ void Controller::run()
         {
             m_win = true;
             m_window.getWindow()->draw(m_winBackground);
+            
             ++m_level;
         }
         else if (m_cat.isCatOnEdge())
@@ -59,9 +61,12 @@ void Controller::run()
         {
             m_lose = false;
             m_win = false;
+            //m_cat.setUncircled();
+            //m_cat.setCatNotOnEdge();
            // m_loseBackground.setFillColor(sf::Color::Transparent);
             m_window.getWindow()->clear(sf::Color(222, 249, 255));
             m_board.createBoard();
+            m_cat.initCat();
         }
 
         m_window.getWindow()->display();

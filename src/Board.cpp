@@ -234,9 +234,12 @@ bool Board::catCircled(Tile* src)
 
 void Board::getLastTile()
 {
-	Tile* lastTile = m_clickedTiles[m_clickedTiles.size() - 1];
-	lastTile->tileUnclicked();
-	m_clickedTiles.pop_back();
+	if (!m_clickedTiles.empty())
+	{
+		Tile* lastTile = m_clickedTiles[m_clickedTiles.size() - 1];
+		lastTile->tileUnclicked();
+		m_clickedTiles.pop_back();
+	}
 }
 
 Tile* Board::getTile(int index1, int index2)
