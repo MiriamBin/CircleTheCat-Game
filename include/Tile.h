@@ -16,6 +16,7 @@ public:
     sf::CircleShape getTile();
     bool contain(sf::Vector2f location);
     void tileClicked();
+    void tileUnclicked();
     bool isClicked();
     
     bool alreadyVisited();

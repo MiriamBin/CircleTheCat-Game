@@ -8,13 +8,13 @@ Board::Board()
 {	
 	this->m_levelText.setFont(*ResourcesManager::instance().getFont());
 	this->m_levelText.setCharacterSize(CHAR_SIZE);
-	this->m_levelText.setPosition(900, 140);
+	this->m_levelText.setPosition(950, 140);
 	this->m_levelText.setColor(sf::Color(6, 79, 97));
 	this->m_levelText.setString("Level: " + std::to_string(m_level));
 
 	this->m_clickText.setFont(*ResourcesManager::instance().getFont());
 	this->m_clickText.setCharacterSize(CHAR_SIZE);
-	this->m_clickText.setPosition(900, 240);
+	this->m_clickText.setPosition(950, 240);
 	this->m_clickText.setColor(sf::Color(6, 79, 97));
 	this->m_clickText.setString("Click: " + std::to_string(m_clickCounter));
 
@@ -118,6 +118,7 @@ bool Board::handleClick(const sf::Vector2f pos)
 		{
 			if (m_tiles[i][j].contain(pos) && !m_tiles[i][j].isClicked())
 			{
+				m_clickedTiles.push_back(&m_tiles[i][j]);
 				m_tiles[i][j].tileClicked();
 				++m_clickCounter;
 				return true;
@@ -216,7 +217,19 @@ bool Board::catCircled(Tile* src)
 	return true;
 }
 
+void Board::getLastTile()
+{
+	Tile* lastTile = m_clickedTiles[m_clickedTiles.size() - 1];
+	lastTile->tileUnclicked();
+	m_clickedTiles.pop_back();
+}
+
 Tile* Board::getTile(int index1, int index2)
 {
 	return &m_tiles[index1][index2];
+}
+
+void Board::resetBoard()
+{
+
 }

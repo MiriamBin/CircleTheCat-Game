@@ -98,3 +98,9 @@ void Tile::tileClicked()
 	m_clicked = true;
 	m_tile.setFillColor(sf::Color(50, 116, 150));
 }
+
+void Tile::tileUnclicked()
+{
+	m_clicked = false;
+	m_tile.setFillColor(sf::Color(120, 210, 227));
+}

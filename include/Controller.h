@@ -14,13 +14,13 @@ public:
     void handleButtonClick(const sf::Vector2f pos);
 
 private:
+
     Window m_window;
     Board m_board;
     Cat m_cat;
     Button m_reset;
     Button m_undo;
-   // int m_clickCounter;
-
-   // sf::Font m_font;
+   
+    //bool m_resetBoard = false;
 
 };

@@ -1,4 +1,5 @@
 #pragma once
+#include "resourcesManager.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "Macros.h"

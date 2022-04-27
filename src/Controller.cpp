@@ -5,8 +5,8 @@
 Controller::Controller()
     :m_cat(&m_board)
 {
-    m_undo = Button(sf::Vector2f(1000, 400), sf::Vector2f(1000, 400), sf::Vector2f(50, 50), "UNDO", CHAR_SIZE);
-    m_reset = Button(sf::Vector2f(1000, 600), sf::Vector2f(1000, 600), sf::Vector2f(50, 50), "RESET", CHAR_SIZE);
+    m_undo = Button(sf::Vector2f(1040, 400), sf::Vector2f(1040, 400), sf::Vector2f(150, 80), "UNDO", CHAR_SIZE);
+    m_reset = Button(sf::Vector2f(1040, 550), sf::Vector2f(1040, 550), sf::Vector2f(150, 80), "RESET", CHAR_SIZE);
 
  // Button::Button(sf::Vector2f buttonPos, sf::Vector2f textPos, sf::Vector2f buttonSize, std::string buttonName, int textSize)
 }
@@ -54,11 +54,16 @@ void Controller::handleButtonClick(const sf::Vector2f pos)
 {
     if (m_reset.contain(pos))
     {
+        //m_reset = true;
+        m_board.resetBoard();
         std::cout << " RESET \n";
     }
 
     else if (m_undo.contain(pos))
     {
+        m_board.getLastTile();
+        m_cat.getLastStep();
         std::cout << " UNDO \n";
     }
 }
+
