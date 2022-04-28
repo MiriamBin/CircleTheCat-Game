@@ -7,6 +7,11 @@ Tile::Tile()
 
 }
 
+Tile::Tile(bool isTarget)
+{
+	m_isTarget = isTarget;
+}
+
 //------------------------------- FOR DEBUG ---------------
 void Tile::color()
 {
@@ -112,4 +117,9 @@ void Tile::tileUnclicked()
 {
 	m_clicked = false;
 	m_tile.setFillColor(sf::Color(120, 210, 227));
+}
+
+bool Tile::isTarget()
+{
+	return m_isTarget;
 }

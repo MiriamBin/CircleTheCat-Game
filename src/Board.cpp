@@ -6,16 +6,16 @@
 Board::Board()
 	:m_clickCounter(0), m_level(1)
 {	
+	m_target = Tile(true);
 	setText();
-
 	srand(time(0));
-	
 	createBoard();
 }
 
 void Board::createBoard()
 {
 	m_clickCounter = 0;
+	updateText();
 	m_tiles.clear();
 	int counter = 0;
 
@@ -48,18 +48,27 @@ void Board::createBoard()
 	createNeighborsList();
 }
 
+void Board::updateLevel()
+{
+	++m_level;
+}
+
 void Board::setText()
 {
 	m_levelText.setFont(*ResourcesManager::instance().getFont());
 	m_levelText.setCharacterSize(CHAR_SIZE);
 	m_levelText.setPosition(950, 140);
 	m_levelText.setColor(sf::Color(6, 79, 97));
-	m_levelText.setString("Level: " + std::to_string(m_level));
 
 	m_clickText.setFont(*ResourcesManager::instance().getFont());
 	m_clickText.setCharacterSize(CHAR_SIZE);
 	m_clickText.setPosition(950, 240);
 	m_clickText.setColor(sf::Color(6, 79, 97));
+}
+
+void Board::updateText()
+{
+	m_levelText.setString("Level: " + std::to_string(m_level));
 	m_clickText.setString("Click: " + std::to_string(m_clickCounter));
 }
 
@@ -104,6 +113,7 @@ void Board::createNeighborsList()
 			}
 		}
 	}
+
 }
 
 void Board::clorTile(const sf::Vector2f pos)
@@ -239,10 +249,22 @@ void Board::getLastTile()
 		Tile* lastTile = m_clickedTiles[m_clickedTiles.size() - 1];
 		lastTile->tileUnclicked();
 		m_clickedTiles.pop_back();
+		--m_clickCounter;
 	}
 }
 
 Tile* Board::getTile(int index1, int index2)
 {
 	return &m_tiles[index1][index2];
+}
+
+void Board::initCurrBoard()
+{
+	auto size = m_clickedTiles.size();
+
+	for (int i = 0; i < size; ++i)
+	{
+		getLastTile();
+	}
+	updateText();
 }

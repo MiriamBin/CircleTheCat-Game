@@ -7,6 +7,7 @@ class Tile
 {
 public:
     Tile();
+    Tile(bool isTarget);
     Tile(sf::Vector2f pos, bool isEdge, bool isOccupied);
     void draw(sf::RenderWindow& window) const;
     void addNeighbor(Tile* Neighbor);
@@ -17,6 +18,7 @@ public:
     bool contain(sf::Vector2f location);
     void tileClicked();
     void tileUnclicked();
+    bool isTarget();
     bool isClicked();
     void tileOccupied(bool set);
 
@@ -34,6 +36,7 @@ private:
     bool m_clicked = false;
     std::vector<Tile*> m_neighbors;
     bool m_visited = false;
+    bool m_isTarget = false;
     int m_distance = INT_MAX;
     Tile* m_pred = NULL;
 };

@@ -3,7 +3,7 @@
 
 
 Controller::Controller()
-    :m_cat(&m_board), m_level(1), m_win(false), m_lose(false)
+    :m_cat(&m_board), m_win(false), m_lose(false)
 {
     m_undo = Button(sf::Vector2f(1040, 400), sf::Vector2f(1040, 400), sf::Vector2f(150, 80), "UNDO", CHAR_SIZE);
     m_reset = Button(sf::Vector2f(1040, 550), sf::Vector2f(1040, 550), sf::Vector2f(150, 80), "RESET", CHAR_SIZE);
@@ -49,7 +49,6 @@ void Controller::run()
             m_win = true;
             m_window.getWindow()->draw(m_winBackground);
             
-            ++m_level;
         }
         else if (m_cat.isCatOnEdge())
         {
@@ -57,15 +56,17 @@ void Controller::run()
             m_window.getWindow()->draw(m_loseBackground);
         }
             
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && (m_win || m_lose))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_win)
+        {
+            m_board.updateLevel();
+            m_win = false;
+            m_board.createBoard();
+            m_cat.initCat();
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_lose)
         {
             m_lose = false;
-            m_win = false;
-            //m_cat.setUncircled();
-            //m_cat.setCatNotOnEdge();
-           // m_loseBackground.setFillColor(sf::Color::Transparent);
-            m_window.getWindow()->clear(sf::Color(222, 249, 255));
-            m_board.createBoard();
+            m_board.initCurrBoard();
             m_cat.initCat();
         }
 

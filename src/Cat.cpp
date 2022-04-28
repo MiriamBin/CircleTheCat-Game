@@ -22,7 +22,7 @@ void Cat::goToNext()
 		m_cat.setPosition(m_pos->getPosition()); // move the cat
 		m_pos->tileOccupied(true);
 
-		if (m_pos->isEdge()) // if the cat isnt on the edge, continue 
+		if (m_pos->isTarget()) // if the cat isnt on the edge, continue 
 			m_catOnEdge = true;  // here we need to reset the level
 	}
 	else

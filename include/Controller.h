@@ -20,8 +20,6 @@ private:
     Cat m_cat;
     Button m_reset;
     Button m_undo;
-    int m_level = 1;
-    //bool m_resetBoard = false;
     bool m_win;
     bool m_lose;
 

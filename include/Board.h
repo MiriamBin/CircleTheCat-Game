@@ -22,6 +22,8 @@ public:
     Tile* getTile(int index1, int index2);
     void getLastTile();
     void createBoard();
+    void updateLevel();
+    void initCurrBoard();
 
 private:
     std::vector< std::vector<Tile>> m_tiles;
@@ -32,6 +34,7 @@ private:
     int m_clickCounter;
     int m_level;
 
+    void updateText();
     void setText();
 
 };
