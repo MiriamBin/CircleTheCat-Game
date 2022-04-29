@@ -56,6 +56,18 @@ void Cat::initCat()
 	m_catCircled = false;
 }
 
+void Cat::backToStart()
+{
+	auto size = m_steps.size();
+
+	for (int i = 0; i < size; ++i)
+	{
+		getLastStep();
+	}
+	m_catOnEdge = false;
+	m_catCircled = false;
+}
+
 bool Cat::isCatCircled()
 {
 	return m_catCircled;

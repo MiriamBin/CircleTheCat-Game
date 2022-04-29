@@ -14,6 +14,8 @@ public:
 	void getLastStep();
 	void initCat();
 
+	void backToStart();
+
 	bool isCatCircled();
 	bool isCatOnEdge();
 

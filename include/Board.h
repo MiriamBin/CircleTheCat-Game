@@ -22,6 +22,7 @@ public:
     Tile* getTile(int index1, int index2);
     void getLastTile();
     void createBoard();
+    void setOccupideTiles();
     void updateLevel();
     void initCurrBoard();
 

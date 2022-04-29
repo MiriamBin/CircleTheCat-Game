@@ -19,7 +19,7 @@ void Tile::color()
 }
 //----------------------------------------------------
 
-Tile::Tile(sf::Vector2f pos, bool isEdge, bool isOccupied)
+Tile::Tile(sf::Vector2f pos, bool isEdge/*, bool isOccupied*/)
 {
 	m_tile.setRadius(30);
 	m_tile.setPosition(pos);
@@ -27,8 +27,8 @@ Tile::Tile(sf::Vector2f pos, bool isEdge, bool isOccupied)
 	
 	m_isEdge = isEdge;
 	
-	if (isOccupied)
-		tileClicked();
+	/*if (isOccupied)
+		tileClicked();*/
 }
 
 void Tile::draw(sf::RenderWindow& window) const

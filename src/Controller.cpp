@@ -44,13 +44,13 @@ void Controller::run()
         m_undo.printButton(*m_window.getWindow());
         //------
 
-        if (m_cat.isCatCircled())
+        if (m_cat.isCatCircled()) //win
         {
             m_win = true;
             m_window.getWindow()->draw(m_winBackground);
             
         }
-        else if (m_cat.isCatOnEdge())
+        else if (m_cat.isCatOnEdge()) //lose
         {
             m_lose = true;
             m_window.getWindow()->draw(m_loseBackground);
@@ -67,7 +67,7 @@ void Controller::run()
         {
             m_lose = false;
             m_board.initCurrBoard();
-            m_cat.initCat();
+            m_cat.backToStart();
         }
 
         m_window.getWindow()->display();

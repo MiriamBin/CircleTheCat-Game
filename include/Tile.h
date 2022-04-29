@@ -8,7 +8,7 @@ class Tile
 public:
     Tile();
     Tile(bool isTarget);
-    Tile(sf::Vector2f pos, bool isEdge, bool isOccupied);
+    Tile(sf::Vector2f pos, bool isEdge/*, bool isOccupied*/);
     void draw(sf::RenderWindow& window) const;
     void addNeighbor(Tile* Neighbor);
     std::vector<Tile*> getNeighborList();

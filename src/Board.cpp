@@ -26,31 +26,39 @@ void Board::createBoard()
 		{
 			bool isEdge = false, isOccupied = false;
 
-			//----------------------------------------------------------------------------------
-			//int range = (14 - 5 * (m_level - 1)) - (12 - 5 * (m_level - 1)) + 1;
-			//isOccupied = rand() % range + (12 - 5 * (m_level - 1));
-			isOccupied = (rand() % 121) < (14 - 5 * (m_level - 1));
-			if (isOccupied)
-				counter++;
-			if (counter > 14 - 5 * (m_level - 1) || (j == 5 && i == 5))
-				isOccupied = false;
-			//----------------------------------------------------------------------------------
-
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 45 + i * (DIAMETER + SPACE)), isEdge, isOccupied);
+			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 45 + i * (DIAMETER + SPACE)), isEdge/*, isOccupied*/);
 
 			row.push_back(tile);
 		}
 		m_tiles.push_back(row);
 	}
+	setOccupideTiles();
 	createNeighborsList();
+}
+
+void Board::setOccupideTiles()
+{
+	for (int m = 0; m < (14 - 5 * (m_level - 1)); ++m)
+	{
+		int row = rand() % GRAPH_SIZE,
+			col = rand() % GRAPH_SIZE;
+
+		if (row == 5 && col == 5)
+			continue;
+
+		m_tiles[row][col].tileClicked();
+	}
 }
 
 void Board::updateLevel()
 {
-	++m_level;
+	if (m_level == 3)
+		m_level = 1;
+	else
+		++m_level;
 }
 
 void Board::setText()
@@ -113,7 +121,6 @@ void Board::createNeighborsList()
 			}
 		}
 	}
-
 }
 
 void Board::clorTile(const sf::Vector2f pos)
@@ -244,7 +251,7 @@ bool Board::catCircled(Tile* src)
 
 void Board::getLastTile()
 {
-	if (!m_clickedTiles.empty())
+	if (!m_clickedTiles.empty() && m_clickCounter > 0)
 	{
 		Tile* lastTile = m_clickedTiles[m_clickedTiles.size() - 1];
 		lastTile->tileUnclicked();
