@@ -49,7 +49,7 @@ void Board::setOccupideTiles()
 		int row = rand() % GRAPH_SIZE,
 			col = rand() % GRAPH_SIZE;
 
-		if (row == 5 && col == 5)
+		if (row == GRAPH_SIZE/2 && col == GRAPH_SIZE/2)
 			continue;
 
 		m_tiles[row][col].tileClicked();
