@@ -44,13 +44,17 @@ void Board::createBoard()
 
 void Board::setOccupideTiles()
 {
-	for (int m = 0; m < (14 - 5 * (m_level - 1)); ++m)
+	auto num = (14 - 5 * (m_level - 1));
+	for (int m = 0; m < num; ++m)
 	{
 		int row = rand() % GRAPH_SIZE,
 			col = rand() % GRAPH_SIZE;
 
 		if (row == GRAPH_SIZE/2 && col == GRAPH_SIZE/2)
 			continue;
+
+		if (m_tiles[row][col].isClicked())
+			++num;
 
 		m_tiles[row][col].tileClicked();
 	}
