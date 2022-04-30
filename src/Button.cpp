@@ -9,12 +9,12 @@ Button::Button(sf::Vector2f buttonPos, sf::Vector2f textPos, sf::Vector2f button
 	: m_buttonSize(buttonSize)
 {
 	m_button.setSize(m_buttonSize);
-	//m_button.setTexture(ResourcesManager::instance().getBackground(Backgrounds::button));
 	m_button.setPosition(buttonPos);
 	m_button.setOrigin(m_buttonSize.x / 2, m_buttonSize.y / 2);
-	m_button.setFillColor(sf::Color::Transparent);
-	m_button.setOutlineColor(sf::Color(6, 79, 97));
-	m_button.setOutlineThickness(1.8);
+	m_button.setTexture(ResourcesManager::instance().getButton());
+	//m_button.setFillColor(sf::Color::Transparent);
+	//m_button.setOutlineColor(sf::Color(6, 79, 97));
+	//m_button.setOutlineThickness(1.8);
 
 	m_buttonText.setFont(*ResourcesManager::instance().getFont());
 	m_buttonText.setString(buttonName);

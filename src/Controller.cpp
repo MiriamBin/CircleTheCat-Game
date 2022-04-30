@@ -5,8 +5,8 @@
 Controller::Controller()
     :m_cat(&m_board), m_win(false), m_lose(false)
 {
-    m_undo = Button(sf::Vector2f(1040, 400), sf::Vector2f(1040, 400), sf::Vector2f(150, 80), "UNDO", CHAR_SIZE);
-    m_reset = Button(sf::Vector2f(1040, 550), sf::Vector2f(1040, 550), sf::Vector2f(150, 80), "RESET", CHAR_SIZE);
+    m_undo = Button(sf::Vector2f(1175, 650), sf::Vector2f(1175, 640), sf::Vector2f(200, 80), "UNDO", CHAR_SIZE);
+    m_reset = Button(sf::Vector2f(1175, 750), sf::Vector2f(1175, 740), sf::Vector2f(200, 80), "RESET", CHAR_SIZE);
 
     m_winBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
     m_winBackground.setTexture(ResourcesManager::instance().getWinImg());

@@ -12,6 +12,10 @@ public:
 	const sf::Texture* getWinImg() const;
 
 	const sf::Texture* getLoseImg() const;
+
+	const sf::Texture* getButton() const;
+
+	const sf::Texture* getBackground() const;
 	
 private:
 	ResourcesManager();
@@ -21,4 +25,6 @@ private:
 	sf::Texture m_catTexture;
 	sf::Texture m_winTexture;
 	sf::Texture m_loseTexture;
+	sf::Texture m_background;
+	sf::Texture m_button;
 };

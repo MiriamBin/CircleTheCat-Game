@@ -30,6 +30,7 @@ private:
     std::vector< std::vector<Tile>> m_tiles;
     Tile m_target;
     std::vector<Tile*> m_clickedTiles;
+    sf::RectangleShape m_boardBackground;
     sf::Text m_levelText;
     sf::Text m_clickText;
     int m_clickCounter;

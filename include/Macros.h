@@ -2,15 +2,15 @@
 #include <SFML/Graphics.hpp>
 
 //grapics
-const int WINDOW_WIDTH = 1200;
-const int WINDOW_HEIGHT = 800;
-const int CHAR_SIZE = 50;
-const int CAT_SIZE = 65;
+const int WINDOW_WIDTH = 1350;
+const int WINDOW_HEIGHT = 950;
+const int CHAR_SIZE = 55;
+const int CAT_SIZE = 70;
 
 //Tiles
 const int GRAPH_SIZE = 11;
-const int TILE_RADIUS = 30;
-const int DIAMETER = 60;
+const int TILE_RADIUS = 35;
+const int DIAMETER = 70;
 const int SPACE = 5;
 
 //moving statistics

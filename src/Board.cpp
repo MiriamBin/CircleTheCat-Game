@@ -6,6 +6,9 @@
 Board::Board()
 	:m_clickCounter(0), m_level(1)
 {	
+	m_boardBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+	m_boardBackground.setTexture(ResourcesManager::instance().getBackground());
+
 	m_target = Tile(true);
 	setText();
 	srand(time(0));
@@ -29,7 +32,7 @@ void Board::createBoard()
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(120 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 45 + i * (DIAMETER + SPACE)), isEdge/*, isOccupied*/);
+			Tile tile(sf::Vector2f(100 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 55 + i * (DIAMETER + SPACE)), isEdge/*, isOccupied*/);
 
 			row.push_back(tile);
 		}
@@ -65,12 +68,12 @@ void Board::setText()
 {
 	m_levelText.setFont(*ResourcesManager::instance().getFont());
 	m_levelText.setCharacterSize(CHAR_SIZE);
-	m_levelText.setPosition(950, 140);
+	m_levelText.setPosition(1080, 140);
 	m_levelText.setColor(sf::Color(6, 79, 97));
 
 	m_clickText.setFont(*ResourcesManager::instance().getFont());
 	m_clickText.setCharacterSize(CHAR_SIZE);
-	m_clickText.setPosition(950, 240);
+	m_clickText.setPosition(1080, 240);
 	m_clickText.setColor(sf::Color(6, 79, 97));
 }
 
@@ -82,7 +85,7 @@ void Board::updateText()
 
 void Board::drawBoard(sf::RenderWindow& window)
 {
-	//window.clear(sf::Color(222, 249, 255));
+	window.draw(m_boardBackground);
 
 	for (int i = 0; i < GRAPH_SIZE; i++)
 	{
@@ -91,6 +94,7 @@ void Board::drawBoard(sf::RenderWindow& window)
 			m_tiles[i][j].draw(window);
 		}
 	}
+	
 	window.draw(m_levelText);
 	window.draw(m_clickText);
 	this->m_clickText.setString("Steps: " + std::to_string(m_clickCounter));
