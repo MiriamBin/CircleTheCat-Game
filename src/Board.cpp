@@ -32,7 +32,7 @@ void Board::createBoard()
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(100 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 55 + i * (DIAMETER + SPACE)), isEdge/*, isOccupied*/);
+			Tile tile(sf::Vector2f(100 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 60 + i * (DIAMETER + SPACE)), isEdge/*, isOccupied*/);
 
 			row.push_back(tile);
 		}
