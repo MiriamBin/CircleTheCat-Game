@@ -55,8 +55,8 @@ void Board::setOccupideTiles()
 
 		if (m_tiles[row][col].isClicked())
 			++num;
-
-		m_tiles[row][col].tileClicked();
+		else
+			m_tiles[row][col].tileClicked();
 	}
 }
 
