@@ -9,8 +9,12 @@ ResourcesManager::ResourcesManager()
 		!m_winTexture.loadFromFile("resources/win.png")||
 		!m_loseTexture.loadFromFile("resources/lose.png")||
 		!m_button.loadFromFile("resources/button.png")||
-		!m_background.loadFromFile("resources/background.png"))
+		!m_background.loadFromFile("resources/background.png")||
+		!m_soundBuffer.loadFromFile("resources/jump.wav"))
 		exit(EXIT_FAILURE);
+
+	m_Sound.setBuffer(m_soundBuffer);
+	m_Sound.setVolume(5);
 }
 
 ResourcesManager& ResourcesManager::instance()
@@ -47,4 +51,14 @@ const sf::Texture* ResourcesManager::getButton() const
 const sf::Texture* ResourcesManager::getBackground() const
 {
 	return &m_background;
+}
+
+void ResourcesManager::playSound()
+{
+	m_Sound.play();
+}
+
+const sf::SoundBuffer* ResourcesManager::getSoundBuffer() const
+{
+	return &(m_soundBuffer);
 }

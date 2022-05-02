@@ -34,40 +34,9 @@ void Controller::run()
             }
         }
 
-        //---- need to move to new function ----
-        m_window.getWindow()->clear(sf::Color(222, 249, 255));  
-
-        m_board.drawBoard(*m_window.getWindow());
-        m_cat.drawCat(*m_window.getWindow());
-        m_reset.printButton(*m_window.getWindow());
-        m_undo.printButton(*m_window.getWindow());
-        //------
-
-        if (m_cat.isCatCircled()) //win
-        {
-            m_win = true;
-            m_window.getWindow()->draw(m_winBackground);
-            
-        }
-        else if (m_cat.isCatOnEdge()) //lose
-        {
-            m_lose = true;
-            m_window.getWindow()->draw(m_loseBackground);
-        }
-            
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_win)
-        {
-            m_board.updateLevel();
-            m_win = false;
-            m_board.createBoard();
-            m_cat.initCat();
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_lose)
-        {
-            m_lose = false;
-            m_board.initCurrBoard();
-            m_cat.backToStart();
-        }
+        drawGame();
+        setLoseOrWin();
+        handleLoseOrWin();
 
         m_window.getWindow()->display();
     }
@@ -75,8 +44,9 @@ void Controller::run()
 
 void Controller::handleClick(const sf::Vector2f pos)
 {
-    if (m_board.handleClick(pos))
+    if ((!m_lose && !m_win) && m_board.handleClick(pos))
     {
+        ResourcesManager::instance().playSound();
         m_cat.goToNext();
     }
 
@@ -98,3 +68,43 @@ void Controller::handleButtonClick(const sf::Vector2f pos)
     }
 }
 
+void Controller::drawGame()
+{
+    m_window.getWindow()->clear(sf::Color(222, 249, 255));
+    m_board.drawBoard(*m_window.getWindow());
+    m_cat.drawCat(*m_window.getWindow());
+    m_reset.printButton(*m_window.getWindow());
+    m_undo.printButton(*m_window.getWindow());
+}
+
+void Controller::setLoseOrWin()
+{
+    if (m_cat.isCatCircled()) //win
+    {
+        m_win = true;
+        m_window.getWindow()->draw(m_winBackground);
+    }
+
+    else if (m_cat.isCatOnEdge()) //lose
+    {
+        m_lose = true;
+        m_window.getWindow()->draw(m_loseBackground);
+    }
+}
+
+void Controller::handleLoseOrWin()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_win)
+    {
+        m_board.updateLevel();
+        m_win = false;
+        m_board.createBoard();
+        m_cat.initCat();
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && m_lose)
+    {
+        m_lose = false;
+        m_board.initCurrBoard();
+        m_cat.backToStart();
+    }
+}

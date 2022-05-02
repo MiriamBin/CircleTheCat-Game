@@ -12,16 +12,31 @@ Cat::Cat(Board* board)
 
 void Cat::goToNext()
 {
+	srand(time(0));
 	m_steps.push_back(m_pos);
 	m_pos->tileOccupied(false);
 
-	if (m_board->shortestPath(m_pos)) // if we have path - the cat isn't mukaf
+	if (firtsStep)
+	{
+		auto tile = m_pos->getNeighborList()[rand() % m_pos->getNeighborList().size()];
+		while (tile->isClicked())
+		{
+			tile = m_pos->getNeighborList()[rand() % m_pos->getNeighborList().size()];
+		}
+
+		m_pos = tile;
+		m_cat.setPosition(m_pos->getPosition()); // move the cat
+		m_pos->tileOccupied(true);
+		firtsStep = false;
+	}
+
+	else if (m_board->shortestPath(m_pos)) // if we have path - the cat isn't mukaf
 	{
 		m_cat.setPosition(m_pos->getPosition()); // move the cat
 		m_pos->tileOccupied(true);
 
 		if (m_pos->isTarget()) // if the cat isnt on the edge, continue 
-			m_catOnEdge = true;  // here we need to reset the level
+			m_catOnEdge = true;  
 	}
 	else
 		m_catCircled = true;
@@ -54,6 +69,7 @@ void Cat::initCat()
 	m_cat.setPosition(m_pos->getPosition());
 	m_catOnEdge = false;
 	m_catCircled = false;
+	firtsStep = true;
 }
 
 void Cat::backToStart()
@@ -66,6 +82,7 @@ void Cat::backToStart()
 	}
 	m_catOnEdge = false;
 	m_catCircled = false;
+	firtsStep = true;
 }
 
 bool Cat::isCatCircled()

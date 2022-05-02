@@ -12,6 +12,9 @@ public:
     void run();
     void handleClick(const sf::Vector2f pos);
     void handleButtonClick(const sf::Vector2f pos);
+    void drawGame();
+    void setLoseOrWin();
+    void handleLoseOrWin();
 
 private:
 
