@@ -13,7 +13,6 @@ Controller::Controller()
 
     m_loseBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
     m_loseBackground.setTexture(ResourcesManager::instance().getLoseImg());
- // Button::Button(sf::Vector2f buttonPos, sf::Vector2f textPos, sf::Vector2f buttonSize, std::string buttonName, int textSize)
 }
 
 void Controller::run()

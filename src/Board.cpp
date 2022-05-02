@@ -1,6 +1,5 @@
 #include "Board.h"
-#include <iostream>		//DEBUG
-//#include "Window.h"
+#include <iostream>	
 
 
 Board::Board()
@@ -32,7 +31,8 @@ void Board::createBoard()
 			if (i == 0 || i == 10 || j == 0 || j == 10)
 				isEdge = true;
 
-			Tile tile(sf::Vector2f(100 + j * (DIAMETER + SPACE) + (i % 2) * (TILE_RADIUS + SPACE / 2), 60 + i * (DIAMETER + SPACE)), isEdge/*, isOccupied*/);
+			Tile tile(sf::Vector2f(100 + j * (DIAMETER + SPACE) + (i % 2) * 
+				(TILE_RADIUS + SPACE / 2), 60 + i * (DIAMETER + SPACE)), isEdge);
 
 			row.push_back(tile);
 		}
@@ -45,7 +45,8 @@ void Board::createBoard()
 void Board::setOccupideTiles()
 {
 	auto num = (14 - 5 * (m_level - 1));
-	for (int m = 0; m < num; ++m)
+
+	for (int i = 0; i < num; ++i)
 	{
 		int row = rand() % GRAPH_SIZE,
 			col = rand() % GRAPH_SIZE;
@@ -102,7 +103,6 @@ void Board::drawBoard(sf::RenderWindow& window)
 	window.draw(m_levelText);
 	window.draw(m_clickText);
 	this->m_clickText.setString("Steps: " + std::to_string(m_clickCounter));
-	//window.display();
 }
 
 void Board::createNeighborsList()
@@ -111,17 +111,8 @@ void Board::createNeighborsList()
 	{
 		for (int j = 0; j < GRAPH_SIZE; j++)
 		{
-			for (int k = -1; k <= 1; ++k)   // row
-			{
-				for (int l = -1; l <= 1; l++) // col
-				{
-					if((i + l) >= 0 && (i + l) < GRAPH_SIZE && (j + k) >= 0 && (j + k) < GRAPH_SIZE)
-						if ((i % 2 == 0 && l != 0 && k == 1) || (i % 2 == 1 && l != 0 && k == -1) || k == 0 && l == 0)
-							continue;
-						else
-							m_tiles[i][j].addNeighbor(&m_tiles[i + l][j + k]);
-				}
-			}
+			setNeighbor(i, j);
+
 			if (m_tiles[i][j].isEdge())
 			{
 				m_target.addNeighbor(&m_tiles[i][j]);
@@ -131,35 +122,42 @@ void Board::createNeighborsList()
 	}
 }
 
-void Board::clorTile(const sf::Vector2f pos)
+void Board::setNeighbor(int i, int j)
 {
-	for (size_t i = 0; i < GRAPH_SIZE; i++)
+	for (int row = UP; row <= DOWN; ++row)
 	{
-		for (size_t j = 0; j < GRAPH_SIZE; j++)
+		for (int col = RIGHT; col <= LEFT; col++)
 		{
-			/*if (m_tiles[i][j].getTile().getGlobalBounds().contains(pos))
+			if ((i + col) >= 0 && (i + col) < GRAPH_SIZE && (j + row) >= 0 && (j + row) < GRAPH_SIZE)
 			{
-				m_tiles[i][j].color();
-			}*/
+				if ((i % 2 == 0 && col != IN_PLACE && row == DOWN) || 
+					(i % 2 == 1 && col != IN_PLACE && row == UP) || 
+					 row == IN_PLACE && col == IN_PLACE)
+					continue;
+				else
+					m_tiles[i][j].addNeighbor(&m_tiles[i + col][j + row]);
+			}
+				
 		}
 	}
 }
 
 bool Board::handleClick(const sf::Vector2f pos)
 {
-	for (int i = 0; i < GRAPH_SIZE; i++)
+	for (auto& row : m_tiles)
 	{
-		for (int j = 0; j < GRAPH_SIZE; j++)
+		for (auto& tile : row)
 		{
-			if (m_tiles[i][j].contain(pos) && !m_tiles[i][j].isClicked())
+			if (tile.contain(pos) && !tile.isClicked())
 			{
-				m_clickedTiles.push_back(&m_tiles[i][j]);
-				m_tiles[i][j].tileClicked();
+				m_clickedTiles.push_back(&tile);
+				tile.tileClicked();
 				++m_clickCounter;
 				return true;
 			}
 		}
 	}
+
 	return false;
 }
 
@@ -167,15 +165,16 @@ bool Board::bfs(Tile* src)
 {
 	std::queue<Tile*> queue;
 
-	for (int i = 0; i < GRAPH_SIZE; i++)
+	for (auto& row : m_tiles)
 	{
-		for (int j = 0; j < GRAPH_SIZE; j++)
+		for (auto& tile : row)
 		{
-			m_tiles[i][j].setVisited(false);
-			m_tiles[i][j].setDistance(INT_MAX);
-			m_tiles[i][j].setPred(NULL);
+			tile.setVisited(false);
+			tile.setDistance(INT_MAX);
+			tile.setPred(NULL);
 		}
 	}
+
 	m_target.setVisited(false);
 	m_target.setDistance(INT_MAX);
 	m_target.setPred(NULL);
@@ -190,18 +189,17 @@ bool Board::bfs(Tile* src)
 		std::vector<Tile*>neighbors = u->getNeighborList();
 		queue.pop();
 
-		for (int i = 0; i < neighbors.size(); i++)
+		for (auto& neighbor : neighbors)
 		{
-			if (!neighbors[i]->alreadyVisited() && !neighbors[i]->isClicked())
+			if (!neighbor->alreadyVisited() && !neighbor->isClicked())
 			{
-				neighbors[i]->setVisited(true);
-				neighbors[i]->setDistance(u->getDistance() + 1);
-				neighbors[i]->setPred(u);
-				queue.push(neighbors[i]);
+				neighbor->setVisited(true);
+				neighbor->setDistance(u->getDistance() + 1);
+				neighbor->setPred(u);
+				queue.push(neighbor);
 
-				// We stop BFS when we find
-				// destination.
-				if (neighbors[i] == &m_target)
+				// We stop BFS when we find destination.
+				if (neighbor == &m_target)
 					return true;
 			}
 		}
@@ -227,33 +225,33 @@ bool Board::shortestPath(Tile*& src)
 				tile = src->getNeighborList()[rand() % src->getNeighborList().size()];
 			}
 			src = tile;
-			//src = list[rand() % list.size()];
 			return true;
 			
 		}
 	}
 
 	std::vector<Tile*> path;
-	Tile* crawl = &m_target;
-	path.push_back(crawl);
+	Tile* step = &m_target;
+	path.push_back(step);
 
-	while (crawl->getPred()->getPred())
+	while (step->getPred()->getPred())
 	{
-		path.push_back(crawl->getPred());
-		crawl = crawl->getPred();
+		path.push_back(step->getPred());
+		step = step->getPred();
 	}
 
-	src = crawl;
+	src = step;
 	return true;
 }
 
 bool Board::catCircled(Tile* src)
 {
-	for (int i = 0; i < src->getNeighborList().size(); i++)
+	for (auto& cat : src->getNeighborList())
 	{
-		if (!src->getNeighborList()[i]->isClicked())
+		if (!cat->isClicked())
 			return false;
 	}
+
 	return true;
 }
 

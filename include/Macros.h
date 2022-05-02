@@ -14,14 +14,12 @@ const int DIAMETER = 70;
 const int SPACE = 5;
 
 //moving statistics
-const float BASE_SPEED = 130.0;
-const float STEP = 30.0;
+const int UP = -1;
+const int DOWN = 1;
+const int LEFT = 1;
+const int RIGHT = -1;
+const int IN_PLACE = 0;
 
 //for functions
 const float SIGMA = 4.0;
 const int DELTA_TIME = 5;
-
-//enum class Backgrounds
-//{
-//	//menu, game, win, lose, help, button, reload, music
-//};

@@ -1,5 +1,4 @@
 #include "Tile.h"
-//#include "Window.h"
 
 
 Tile::Tile()
@@ -12,13 +11,6 @@ Tile::Tile(bool isTarget)
 	m_isTarget = isTarget;
 }
 
-//------------------------------- FOR DEBUG ---------------
-void Tile::color()
-{
-	m_tile.setFillColor(sf::Color(50, 116, 150));
-}
-//----------------------------------------------------
-
 Tile::Tile(sf::Vector2f pos, bool isEdge/*, bool isOccupied*/)
 {
 	m_tile.setRadius(TILE_RADIUS);
@@ -26,9 +18,6 @@ Tile::Tile(sf::Vector2f pos, bool isEdge/*, bool isOccupied*/)
 	m_tile.setFillColor(sf::Color(120, 210, 227));
 	
 	m_isEdge = isEdge;
-	
-	/*if (isOccupied)
-		tileClicked();*/
 }
 
 void Tile::draw(sf::RenderWindow& window) const
@@ -45,7 +34,6 @@ std::vector<Tile*> Tile::getNeighborList()
 {
 	return m_neighbors;
 }
-
 
 bool Tile::isEdge()
 {

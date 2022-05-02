@@ -1,14 +1,9 @@
 #include "Window.h"
-//#include "Controller.h"
-//#include "Macros.h"
 
 
 Window::Window()
 	: m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Circle The Cat", sf::Style::Close | sf::Style::Titlebar)
-{
- /*   m_window.clear(sf::Color(222, 249, 255));
-    m_window.display();*/
-}
+{}
 
 
 //------------------------------------------------ MAYBE NEED TO MOVE TO CONTROLLER
@@ -24,7 +19,7 @@ void Window::windowEvent(Controller& controller, Board& board)
                 m_window.close();
                 break;
             case sf::Event::MouseButtonReleased:
-                board.handleClick(sf::Vector2f(event.mouseButton.x, event.mouseButton.y)); // NEED TO CREATE HANDLECLICK FUNCTION
+                board.handleClick(sf::Vector2f(event.mouseButton.x, event.mouseButton.y));
                 break;
             }
         }

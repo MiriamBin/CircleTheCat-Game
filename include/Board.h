@@ -12,13 +12,11 @@ public:
     Board();
     void drawBoard(sf::RenderWindow& window);
     void createNeighborsList();
-    void clorTile(const sf::Vector2f pos);
+    void setNeighbor(int i, int j);
     bool handleClick(const sf::Vector2f location);
     bool bfs(Tile* src);
     bool shortestPath(Tile*& src);
     bool catCircled(Tile* src);
-   // bool clicked();
-   // void colorForD();
     Tile* getTile(int index1, int index2);
     void getLastTile();
     void createBoard();

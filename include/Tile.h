@@ -12,7 +12,6 @@ public:
     void draw(sf::RenderWindow& window) const;
     void addNeighbor(Tile* Neighbor);
     std::vector<Tile*> getNeighborList();
-    void color();
     bool isEdge();
     sf::CircleShape getTile();
     bool contain(sf::Vector2f location);
