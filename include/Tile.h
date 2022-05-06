@@ -1,33 +1,37 @@
 #pragma once
 #include "Macros.h"
 
-//class Window;
 
 class Tile
 {
 public:
     Tile();
     Tile(bool isTarget);
-    Tile(sf::Vector2f pos, bool isEdge/*, bool isOccupied*/);
+    Tile(sf::Vector2f pos, bool isEdge);
+
     void draw(sf::RenderWindow& window) const;
+    std::vector<Tile*> getNeighborList() const;
     void addNeighbor(Tile* Neighbor);
-    std::vector<Tile*> getNeighborList();
-    bool isEdge();
-    sf::CircleShape getTile();
-    bool contain(sf::Vector2f location);
+    sf::CircleShape getTile() const;
+    bool contain(sf::Vector2f location) const;
+    sf::Vector2f getPosition() const;
+
     void tileClicked();
     void tileUnclicked();
-    bool isTarget();
-    bool isClicked();
     void tileOccupied(bool set);
 
-    bool alreadyVisited();
+    bool isEdge() const;
+    bool isTarget() const;
+    bool isClicked() const;
+
+    bool alreadyVisited() const;
     void setVisited(bool set);
-    int getDistance();
+
+    int getDistance() const;
     void setDistance(int dist);
+
+    Tile* getPred() const;
     void setPred(Tile* pred);
-    Tile* getPred();
-    sf::Vector2f getPosition();
 
 private:
     sf::CircleShape m_tile;

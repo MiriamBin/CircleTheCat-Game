@@ -10,19 +10,21 @@ class Controller
 public:
     Controller();
     void run();
+
+private:
     void handleClick(const sf::Vector2f pos);
     void handleButtonClick(const sf::Vector2f pos);
     void drawGame();
     void setLoseOrWin();
     void handleLoseOrWin();
 
-private:
-
     Window m_window;
     Board m_board;
     Cat m_cat;
+
     Button m_reset;
     Button m_undo;
+
     bool m_win;
     bool m_lose;
 

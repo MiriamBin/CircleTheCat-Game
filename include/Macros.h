@@ -19,7 +19,3 @@ const int DOWN = 1;
 const int LEFT = 1;
 const int RIGHT = -1;
 const int IN_PLACE = 0;
-
-//for functions
-const float SIGMA = 4.0;
-const int DELTA_TIME = 5;

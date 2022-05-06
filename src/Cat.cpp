@@ -85,12 +85,12 @@ void Cat::backToStart()
 	firtsStep = true;
 }
 
-bool Cat::isCatCircled()
+bool Cat::isCatCircled() const
 {
 	return m_catCircled;
 }
 
-bool Cat::isCatOnEdge()
+bool Cat::isCatOnEdge() const
 {
 	return m_catOnEdge;
 }

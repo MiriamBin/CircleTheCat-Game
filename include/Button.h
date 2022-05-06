@@ -10,12 +10,8 @@ public:
 	Button();
 	Button(sf::Vector2f buttonPos, sf::Vector2f textPos, sf::Vector2f buttonSize, std::string buttonName, int textSize);
 
-	void setScaleButon(sf::Vector2f scale);
 	void printButton(sf::RenderWindow& window);
 	bool contain(sf::Vector2f location);
-	//void changeText(std::string);
-	//void changeTexture(Backgrounds index);
-
 	sf::Vector2f getSize() const;
 	
 private:

@@ -7,6 +7,7 @@ class ResourcesManager
 {
 public:
 	static ResourcesManager& instance();
+
 	const sf::Font* getFont() const;
 	const sf::Texture* getCatIcon() const;
 	const sf::Texture* getWinImg() const;
@@ -14,6 +15,7 @@ public:
 	const sf::Texture* getButton() const;
 	const sf::Texture* getBackground() const;
 	const sf::SoundBuffer* getSoundBuffer() const;
+
 	void playSound();
 	
 private:

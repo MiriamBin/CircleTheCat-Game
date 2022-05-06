@@ -2,8 +2,7 @@
 
 Button::Button()
 	: m_button(sf::Vector2f(10,10))
-{
-}
+{}
 
 Button::Button(sf::Vector2f buttonPos, sf::Vector2f textPos, sf::Vector2f buttonSize, std::string buttonName, int textSize)
 	: m_buttonSize(buttonSize)
@@ -24,11 +23,6 @@ Button::Button(sf::Vector2f buttonPos, sf::Vector2f textPos, sf::Vector2f button
 void Button::setButtonSize(sf::Vector2f buttonSize)
 {
 	m_button.setSize(buttonSize);
-}
-
-void Button::setScaleButon(sf::Vector2f scale)
-{
-	m_button.setScale(scale);
 }
 
 void Button::printButton(sf::RenderWindow& window)

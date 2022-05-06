@@ -2,16 +2,14 @@
 
 
 Tile::Tile()
-{
-
-}
+{}
 
 Tile::Tile(bool isTarget)
 {
 	m_isTarget = isTarget;
 }
 
-Tile::Tile(sf::Vector2f pos, bool isEdge/*, bool isOccupied*/)
+Tile::Tile(sf::Vector2f pos, bool isEdge)
 {
 	m_tile.setRadius(TILE_RADIUS);
 	m_tile.setPosition(pos);
@@ -30,32 +28,32 @@ void Tile::addNeighbor(Tile* neighbor)
 	m_neighbors.push_back(neighbor);
 }
 
-std::vector<Tile*> Tile::getNeighborList()
+std::vector<Tile*> Tile::getNeighborList() const
 {
 	return m_neighbors;
 }
 
-bool Tile::isEdge()
+bool Tile::isEdge() const
 {
 	return m_isEdge;
 }
 
-sf::CircleShape Tile::getTile()
+sf::CircleShape Tile::getTile() const
 {
 	return m_tile;
 }
 
-bool Tile::contain(sf::Vector2f location)
+bool Tile::contain(sf::Vector2f location) const
 {
 	return m_tile.getGlobalBounds().contains(location);
 }
 
-bool Tile::isClicked()
+bool Tile::isClicked() const
 {
 	return m_clicked;
 }
 
-bool Tile::alreadyVisited()
+bool Tile::alreadyVisited() const
 {
 	return m_visited;
 }
@@ -65,7 +63,7 @@ void Tile::setVisited(bool set)
 	m_visited = set;
 }
 
-int Tile::getDistance()
+int Tile::getDistance() const
 {
 	return m_distance;
 }
@@ -80,12 +78,12 @@ void Tile::setPred(Tile* pred)
 	m_pred = pred;
 }
 
-Tile* Tile::getPred()
+Tile* Tile::getPred() const
 {
 	return m_pred;
 }
 
-sf::Vector2f Tile::getPosition()
+sf::Vector2f Tile::getPosition() const
 {
 	return m_tile.getPosition();
 }
@@ -107,7 +105,7 @@ void Tile::tileUnclicked()
 	m_tile.setFillColor(sf::Color(120, 210, 227));
 }
 
-bool Tile::isTarget()
+bool Tile::isTarget() const
 {
 	return m_isTarget;
 }
